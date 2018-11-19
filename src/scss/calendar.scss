@@ -1,0 +1,86 @@
+.calendar_wrapper {
+	padding: 10px 0;
+	
+	#calendar {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		width: calc(13vw * 7 + 2px);
+		margin: 0 auto;
+		border: 1px solid $border-color-grid;
+		box-sizing: border-box;
+		> div {
+			display: flex;
+			flex-direction: row;
+			position: relative;padding: 10px;
+			width: 13vw;
+			height: 13vw;
+			border: 1px solid $border-color-grid;
+			box-sizing: border-box;
+			
+			&:nth-child(7n - 1),
+			&:nth-child(7n) {
+				background: $bg-calendar-weekend;
+			}
+			&::before {
+				content: '';
+				display: none;
+			}
+			// Вывод названия дней конечно можно сделать и через
+			// отдельный элемент на странице, как и с числовым значением
+			
+			&:nth-child(7n + 1)::before {
+				content: 'Понедельник,';
+			}
+			&:nth-child(7n + 2)::before {
+				content: 'Вторник,';
+			}
+			&:nth-child(7n + 3)::before {
+				content: 'Среда,';
+			}
+			&:nth-child(7n + 4)::before {
+				content: 'Четверг,';
+			}
+			&:nth-child(7n + 5)::before {
+				content: 'Пятница,';
+			}
+			&:nth-child(7n + 6)::before {
+				content: 'Суббота,';
+			}
+			&:nth-child(7n)::before {
+				content: 'Воскресенье,';
+			}
+			&:nth-child(-n + 7)::before {
+				display: block;
+			}
+			
+			p {
+				margin: 0 0 0 5px;
+				position: relative;
+				z-index: 1;
+			}
+			&.current {
+				background: $bg-calendar-current;
+				font-weight: bold;
+			}
+			.event {
+				position: absolute;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				left:0;
+				padding: 16% 5% 5%;
+				background: $bg-calendar-event;
+				
+				h4, p {
+					margin: 0;
+					font-size: 1.3vw;
+				}
+				p {
+					font-size: 1vw;
+				}
+			}
+			
+		}
+	}
+}

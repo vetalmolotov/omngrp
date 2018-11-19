@@ -16,7 +16,7 @@ var conf = {
 	module: {
 		rules: [
 
-			{ // обработчик LESS
+			{
 				test: /\.scss$/,
 				use: ExtractTextPlugin.extract({
 					use: [{
@@ -26,6 +26,21 @@ var conf = {
 					}],
 					fallback: "style-loader"
 				})
+			},
+			{
+				test: /\.(jpe?g|png|gif|svg)$/i,
+				use: [
+					{
+						loader: 'file-loader',
+						options: {
+							name: '[path][name].[ext]',
+							context: path.resolve(__dirname, "./src/"),
+							outputPath: '',
+							publicPath: './',
+							useRelativePaths: true
+						}
+					}
+				]
 			}
 		]
 	},
